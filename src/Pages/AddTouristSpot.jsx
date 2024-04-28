@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import Swal from 'sweetalert2'
 import { AuthContext } from "../Authprovider/Authprovider";
+import { useNavigate } from "react-router-dom";
 
 const AddTouristSpot = () => {
+    const navigate = useNavigate()
     const [country, setCountry] = useState(null);
     const { user } = useContext(AuthContext);
     const [formData, setFormData] = useState({
@@ -62,6 +64,8 @@ const AddTouristSpot = () => {
                         text: "You clicked the button!",
                         icon: "success"
                     });
+                    form.reset();
+                    navigate('/alltourist')
                 }
             });
     }

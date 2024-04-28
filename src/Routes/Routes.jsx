@@ -14,6 +14,7 @@ import Register from "../Pages/Register";
 import Error from "../Components/Error";
 import ViewCardsDetails from "../Pages/ViewCardsDetails";
 import Country_spots from "../Pages/Country_spots";
+import Mylist_edit from "../Pages/Mylist_edit";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
         path: '/countries-spots',
         element: <Country_spots></Country_spots>
       },
+      {
+        path: "/edit-mylist/:id",
+        element: <Mylist_edit></Mylist_edit>,
+        loader: ({params}) => fetch(`http://localhost:5000/edit-mylist/${params.id}`)
+      }
 
 
     ]

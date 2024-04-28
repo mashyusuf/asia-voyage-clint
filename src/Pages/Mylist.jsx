@@ -1,14 +1,28 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Authprovider/Authprovider";
 import Swal from "sweetalert2";
+import { Link, } from "react-router-dom";
 
 const Mylist = () => {
+
+   
+
+
+
+
+
+
+
+
+
+
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const { user } = useContext(AuthContext);
     const user_email = user.email;
 
+  
     useEffect(() => {
         fetchData();
     }, [user_email]);
@@ -60,9 +74,13 @@ const Mylist = () => {
                         }
                     });
             }
-        });
-    }
+        })
+    };
+        const handleEdit = ()=>{
 
+        }
+        console.log(data)
+        
     return (
         <div className="h-[600px] mt-8">
             {loading && (
@@ -75,7 +93,7 @@ const Mylist = () => {
                     <table className="table-auto border-collapse border border-gray-500 w-full">
                         <thead>
                             <tr className="bg-gray-700 text-white">
-                                <th className="border border-gray-500 px-4 py-2">Name</th>
+                                <th className="border border-gray-500 px-4 py-2">Spot Name</th>
                                 <th className="border border-gray-500 px-4 py-2">Country Name</th>
                                 <th className="border border-gray-500 px-4 py-2">Location</th>
                                 <th className="border border-gray-500 px-4 py-2">Average Cost</th>
@@ -90,7 +108,10 @@ const Mylist = () => {
                                     <td className="border border-gray-500 px-4 py-2">{mylist.location}</td>
                                     <td className="border border-gray-500 px-4 py-2">{mylist.average_cost}</td>
                                     <td className="border border-gray-500 px-4 py-2 flex justify-center gap-2">
+                                        <Link to={`/edit-mylist/${mylist._id}`}>
+
                                         <button className="text-blue-600 hover:text-blue-800 bg-transparent hover:bg-blue-200 rounded-md px-3 py-1 transition duration-300" onClick={() => handleEdit(mylist)}>Edit</button>
+                                        </Link>
                                         <button className="text-red-600 hover:text-red-800 bg-transparent hover:bg-red-200 rounded-md px-3 py-1 transition duration-300" onClick={() => handleDelete(mylist._id)}>Delete</button>
                                     </td>
                                 </tr>

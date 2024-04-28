@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase.config';
 import { GithubAuthProvider, GoogleAuthProvider,  } from 'firebase/auth';
+import Swal from 'sweetalert2';
 
 export const AuthContext = createContext(null)
 const Authprovider = ({children}) => {
@@ -52,30 +53,53 @@ useEffect(() => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const handleGoogleProvider = () => {
-     
-      setLoading(true);
-      return signInWithPopup(auth, googleProvider)
-          .then((result) => {
-              const user = result.user;
-              console.log('you have successfully  logged in ', user)
-          
-
-             
-          }).catch((error) => {
-              console.log(error.message)
-          });
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log('you have successfully logged in ', user);
+        setLoading(false);
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Successful',
+          text: 'Welcome back!',
+        });
+      })
+      .catch((error) => {
+        console.error('Google login error:', error);
+        setLoading(false);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Login failed. Please try again.',
+        });
+      });
   };
+  
   const handleGithubProvider = () => {
-      setLoading(true);
-      return signInWithPopup(auth, githubProvider)
-          .then((result) => {
-              const user = result.user;
-              console.log('you have successfully  logged in ', user)
-          }).catch((error) => {
-              console.log(error.message)
-          });
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log('you have successfully logged in ', user);
+        setLoading(false);
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Successful',
+          text: 'Welcome back!',
+        });
+      })
+      .catch((error) => {
+        console.error('GitHub login error:', error);
+        setLoading(false);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Login failed. Please try again.',
+        });
+      });
   };
- 
+  
 
     console.log(user,'user changed')
     const authInfo = {

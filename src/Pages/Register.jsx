@@ -1,28 +1,57 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Authprovider/Authprovider";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
+  const [emailError, setErrorMessage] = useState('')
+    const [passwordError, setPasswordError] = useState('')
     const navigate = useNavigate()
     const {handleCreateUser,handleUpdateUser}= useContext(AuthContext)
     const handleRegister = (e) => {
+      setErrorMessage('')
+      setPasswordError('')
         e.preventDefault()
         const form =e.target;
         const  userName = form.userName.value;
         const url = form.url.value;
-        const email = form.email.value;
+        const email = form.email.value.trim();
         const password = form.password.value;
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+        if (!emailRegex.test(email)) {
+            setErrorMessage("Please enter a valid email address.");
+            return;
+        }
+    
+        // Client-side password validation
+        const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!strongPasswordRegex.test(password)) {
+            setPasswordError("Password must contain at least one number, one uppercase letter, and one lowercase letter, and be at least 6 characters long.");
+            return;
+        }
        
         handleCreateUser(email,password)
         .then((result)=>{
             const user = result.user;
             handleUpdateUser(userName,url)
+            Swal.fire({
+              icon: 'success',
+              title: 'Login Successful!',
+              showConfirmButton: false,
+              timer: 1500
+          });
             navigate('/login')
             console.log(user);
         })
         .catch((error)=>{
              console.log(error)
+             if (error.code === "auth/email-already-in-use") 
+                setErrorMessage("This email is already in use.");
+              
+
         });
 
         console.log(email, password,userName,url);
@@ -52,10 +81,12 @@ const Register = () => {
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
                   <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
+                  <span className="text-red-500">{emailError}</span>
                 </div>
                 <div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                   <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                  <span className="text-red-500">{passwordError}</span>
                 </div>
                 
                 <div className="flex items-start">
