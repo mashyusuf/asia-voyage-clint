@@ -1,11 +1,48 @@
-
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Country = () => {
-    return (
-        <div>
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure dolor omnis culpa architecto, aliquid laudantium quam sapiente tempore voluptates nisi, quo minus consequatur atque nobis eveniet illo quasi. A esse dolore corporis eius repellendus nihil libero optio doloribus exercitationem aliquid alias reprehenderit ab, fugit ea aliquam deleniti et id quidem illo. Harum, aliquid. Nostrum id laborum obcaecati, doloribus sunt molestias vel maxime velit aliquid. Quaerat autem sint pariatur porro nihil ducimus velit similique deleniti, distinctio corporis saepe illum nemo, asperiores quo repellat, repudiandae libero at reprehenderit. Officiis, consequuntur magnam dolores voluptatem nam iusto, quia quod atque tempore omnis vero et excepturi eveniet dolorem illum molestias ullam possimus deleniti aliquid sapiente est illo placeat. Perspiciatis unde optio amet asperiores qui accusamus vitae cumque quidem assumenda, quam corporis itaque nostrum est quae at, maxime, repudiandae eos aspernatur! Nam quod nesciunt maxime? Sapiente facilis magnam dolor fuga qui praesentium labore fugiat numquam, tempora consequuntur omnis perspiciatis, ex expedita et beatae ipsum cupiditate aliquam voluptatem eius temporibus modi nihil totam nemo architecto. Praesentium totam, culpa ducimus ab dicta corrupti eius harum dolorem deserunt nisi aliquam, recusandae sunt ut illum accusantium obcaecati deleniti voluptatibus laudantium? Et quas debitis explicabo aliquid odit? Beatae illo esse minus?</h1>
-        </div>
-    );
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // Fetch data from backend when component mounts
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/all-countries'); // Replace with your actual backend endpoint
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  console.log(data)
+  return (
+    <div className="grid my-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {data &&
+        data.map((country) => (
+          <div key={country._id} className="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-lg transition duration-300 transform hover:scale-105">
+            <img className="w-full h-48 object-cover" src={country.photoURL} alt={country.name} />
+            <div className="p-4">
+              <h1 className="text-2xl font-bold mb-2 text-center">{country.name}</h1>
+              <p className="italic text-center">{country.description}</p>
+            </div>
+            <div>
+              <Link to={`/country-spot/$`}>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline  w-full">
+                  See More
+                </button>
+              </Link>
+            </div>
+          </div>
+        ))}
+    </div>
+  );
 };
 
 export default Country;

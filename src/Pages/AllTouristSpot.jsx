@@ -7,8 +7,8 @@ const AllTouristSpot = () => {
     console.log(loadedData)
     return (
         <div>
-                <h1>all tourist spots{loadedData.length}</h1> 
-        <div className="grid grid-cols-2 gap-8 ">
+                 
+        <div className="grid grid-cols-3 gap-20  mb-8  mt-8">
 
                 {
                     loadedData.map(data => <AllTouristSpotsCard data={data} key={data._id}></AllTouristSpotsCard>)
