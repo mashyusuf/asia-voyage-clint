@@ -26,7 +26,10 @@ const Spots = () => {
    
     return (
         <section className="grid grid-cols-3 gap-10">
-               
+               <div className="col-span-3 mb-6">
+                <h1 className="text-3xl font-bold text-center mb-4 text-blue-600">Discover Amazing Tourist Spots</h1>
+                <p className="text-lg text-gray-700 text-center">Explore the beauty of various tourist spots around the world.</p>
+            </div>
                 {
                     data && data.map(data => <AllTouristSpotsCard data={data} key={data._id}></AllTouristSpotsCard>)
                 }

@@ -74,19 +74,20 @@ const Mylist_edit = () => {
                                 <label htmlFor="country_name" className="block text-sm font-medium text-gray-700">Country Name</label>
                                 <select name="country_name" id="country_name" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                     {country && country.map(country => <option key={country._id} value={country.name}>{country.name}</option>)}
+                                    
                                 </select>
                             </div>
                             <div>
                                 <label htmlFor="spot" className="block text-sm font-medium text-gray-700">Tourists Spot Name</label>
-                                <input type="text" name="spot" id="spot" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" defaultValue={tourists_spot_name} />
+                                <input type="text" name="spot" id="spot" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" defaultValue={tourists_spot_name} required />
                             </div>
                             <div>
                                 <label htmlFor="location" className="block text-sm font-medium text-gray-700">Location</label>
-                                <input type="text" name="location" id="location" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" defaultValue={location} />
+                                <input type="text" name="location" id="location" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" defaultValue={location} required/>
                             </div>
                             <div>
                                 <label htmlFor="cost" className="block text-sm font-medium text-gray-700">Average Cost</label>
-                                <input type="text" name="cost" id="cost" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" defaultValue={average_cost} />
+                                <input type="text" name="cost" id="cost" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" defaultValue={average_cost} required/>
                             </div>
                         </div>
                         <div className="mt-6">

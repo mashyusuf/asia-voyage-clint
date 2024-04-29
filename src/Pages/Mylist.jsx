@@ -82,7 +82,7 @@ const Mylist = () => {
         console.log(data)
         
     return (
-        <div className="h-[600px] mt-8">
+        <div className="h-[500px] mt-8">
             {loading && (
                 <p className="text-center">
                     <span className="loading loading-bars loading-lg"></span>

@@ -59,8 +59,9 @@ const router = createBrowserRouter([
 
       },
       {
-        path: '/countries-spots',
-        element: <Country_spots></Country_spots>
+        path: '/country/:country_name',
+        element: <Country_spots></Country_spots>,
+        
       },
       {
         path: "/edit-mylist/:id",

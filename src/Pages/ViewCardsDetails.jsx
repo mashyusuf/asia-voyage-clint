@@ -3,6 +3,7 @@ import { FaCircle } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 
 function ViewCardsDetails() {
+   
     const [data, setData] = useState(null);
     const { id } = useParams();
     useEffect(() => {
@@ -16,7 +17,7 @@ function ViewCardsDetails() {
                 setData(jsonData);
             } catch (error) {
                 console.error('Error fetching data:', error);
-            }
+            } 
         };
 
         fetchData();
@@ -24,6 +25,8 @@ function ViewCardsDetails() {
 
     return (
         <div className='my-20'>
+
+           
             {/* Render your component content using the fetched data */}
             {
                 data && data.map(d => (
