@@ -15,6 +15,7 @@ import Error from "../Components/Error";
 import ViewCardsDetails from "../Pages/ViewCardsDetails";
 import Country_spots from "../Pages/Country_spots";
 import Mylist_edit from "../Pages/Mylist_edit";
+import PrivateRoute from "../Components/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -38,16 +39,16 @@ const router = createBrowserRouter([
       },
       {
         path: '/alltourist',
-        element: <AllTouristSpot></AllTouristSpot>,
+        element: <PrivateRoute><AllTouristSpot></AllTouristSpot></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/addtourist')
       },
       {
         path: "/addtourist",
-        element: <AddTouristSpot></AddTouristSpot>
+        element: <PrivateRoute><AddTouristSpot></AddTouristSpot></PrivateRoute>
       },
       {
         path: "/mylist",
-        element: <Mylist></Mylist>,
+        element: <PrivateRoute><Mylist></Mylist></PrivateRoute>,
       },
       {
         path: "/register",
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
         path: "/edit-mylist/:id",
         element: <Mylist_edit></Mylist_edit>,
         loader: ({params}) => fetch(`http://localhost:5000/edit-mylist/${params.id}`)
+      },
+      {
+        path: "*",
+        element: <PrivateRoute></PrivateRoute>
       }
 
 

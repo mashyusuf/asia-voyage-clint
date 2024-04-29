@@ -43,7 +43,7 @@ const Slider = () => {
   };
 
   return (
-    <section className='h-[600px]'>
+    <section className='h-[600px] '>
       <div className=" mx-auto max-w-[1440px]">
         <AliceCarousel
           mouseTracking

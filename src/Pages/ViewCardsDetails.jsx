@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
+import {  Zoom,  } from 'react-awesome-reveal';
 
 function ViewCardsDetails() {
    
@@ -22,12 +23,28 @@ function ViewCardsDetails() {
 
         fetchData();
     }, []); // Ensure that this effect runs only once, or add params.id to the dependency array if needed
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:5000/all-tourist-spots/${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const jsonData = await response.json();
+                setData(jsonData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } 
+        };
+
+        fetchData();
+    }, []); // Ensure that this effect runs only once, or add params.id to the dependency array if needed
 
     return (
         <div className='my-20'>
 
-           
-            {/* Render your component content using the fetched data */}
+           <Zoom>
+
             {
                 data && data.map(d => (
                     <div key={d._id} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center hover:scale-105 transition">
@@ -56,6 +73,7 @@ function ViewCardsDetails() {
                     </div>
                 ))
             }
+           </Zoom>
         </div>
     );
 }

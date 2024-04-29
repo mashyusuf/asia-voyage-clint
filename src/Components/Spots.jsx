@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AllTouristSpotsCard from "./AllTouristSpotsCard";
+import {  Slide,  } from 'react-awesome-reveal';
 
 
 const Spots = () => {
@@ -30,9 +31,12 @@ const Spots = () => {
                 <h1 className="text-3xl font-bold text-center mb-4 text-blue-600">Discover Amazing Tourist Spots</h1>
                 <p className="text-lg text-gray-700 text-center">Explore the beauty of various tourist spots around the world.</p>
             </div>
+          <Slide>
+
                 {
                     data && data.map(data => <AllTouristSpotsCard data={data} key={data._id}></AllTouristSpotsCard>)
                 }
+          </Slide>
 
         </section>
     );

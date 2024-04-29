@@ -18,7 +18,7 @@ const Country_spots = () => {
         };
         fetchData();
     }, [country_name]);
-
+    console.log(spots)
     return (
         <div className="flex justify-center items-center h-full">
             <div className="max-w-6xl w-full p-4 bg-white rounded-md shadow-lg overflow-y-auto" style={{ maxHeight: "80vh" }}>
@@ -50,7 +50,7 @@ const Country_spots = () => {
                                             <p className="text-sm">Location: <span className="font-semibold">{spot.location}</span></p>
                                         </div>
                                         <div className="flex justify-end">
-                                            <Link to={`/spot-details/${spot.id}`} className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">View Details</Link>
+                                            <Link to={`/viewDetails/${spot._id}`} className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">View Details</Link>
                                         </div>
                                     </div>
                                 </div>

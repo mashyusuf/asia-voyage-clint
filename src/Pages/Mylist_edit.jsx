@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Typewriter } from 'react-simple-typewriter';
 
 const Mylist_edit = () => {
     const navigate = useNavigate()
@@ -67,6 +68,24 @@ const Mylist_edit = () => {
         <div>
             <div className="bg-gray-100 py-12">
                 <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg">
+     
+                <h1 className="text-4xl text-center font-bold mb-8"><Typewriter 
+                        words={['Add Tourist Spot!']}
+                        loop={false}
+                        cursor
+                        cursorStyle='_'
+                        typeSpeed={80}
+                        deleteSpeed={50}
+                        delaySpeed={500}
+                        onLoop={() => {}} // Optional callback function on loop event
+                    />
+                     <a
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content="Hello world!"
+                    data-tooltip-place="top"
+                >
+                    ◕‿‿◕
+                </a></h1>
 
                     <form onSubmit={handleAddSpot} className="max-w-xl mx-auto">
                         <div className="grid grid-cols-1 gap-6">

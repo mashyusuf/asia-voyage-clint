@@ -2,8 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import Swal from 'sweetalert2'
 import { AuthContext } from "../Authprovider/Authprovider";
 import { useNavigate } from "react-router-dom";
+import { Typewriter } from 'react-simple-typewriter';
+
 
 const AddTouristSpot = () => {
+    const [loading,setLoading]= useState(false)
     const navigate = useNavigate()
     const [country, setCountry] = useState(null);
     const { user } = useContext(AuthContext);
@@ -12,10 +15,12 @@ const AddTouristSpot = () => {
     });
 
     useEffect(() => {
+        
         fetchData();
     }, []);
 
     const fetchData = async () => {
+        setLoading(true)
         try {
             const response = await fetch('http://localhost:5000/all-countries');
             if (!response.ok) {
@@ -25,6 +30,8 @@ const AddTouristSpot = () => {
             setCountry(jsonData);
         } catch (error) {
             console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false); // Set loading to false regardless of success or error
         }
     }
 
@@ -72,8 +79,35 @@ const AddTouristSpot = () => {
 
     return (
         <div className="bg-gray-100 py-12">
+             {loading && (
+                <p className="text-center">
+                    <span className="loading loading-bars loading-lg"></span>
+                </p>
+            )}
             <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg">
-                <h1 className="text-3xl text-center mb-8 font-bold">Add Tourist Spot</h1>
+            
+                <h1 className="text-4xl text-center mb-8 font-bold"><Typewriter 
+                        words={['Add Tourist Spot!']}
+                        loop={false}
+                        cursor
+                        cursorStyle='_'
+                        typeSpeed={80}
+                        deleteSpeed={50}
+                        delaySpeed={500}
+                        onLoop={() => {}} // Optional callback function on loop event
+                    />
+                     <a
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content="Hello world!"
+                    data-tooltip-place="top"
+                >
+                    ◕‿‿◕
+                </a></h1>
+
+                
+              
+
+
                 <form onSubmit={handleAddSpot} className="max-w-xl mx-auto">
                     <div className="grid grid-cols-1 gap-6">
                         <div>
