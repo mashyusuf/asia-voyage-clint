@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 import {  Zoom,  } from 'react-awesome-reveal';
+import useTitle from '../Components/useTitle';
 
 function ViewCardsDetails() {
    
+    useTitle('Card Details');
+
     const [data, setData] = useState(null);
     const { id } = useParams();
     useEffect(() => {

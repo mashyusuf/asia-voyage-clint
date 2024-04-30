@@ -3,9 +3,11 @@ import Swal from 'sweetalert2'
 import { AuthContext } from "../Authprovider/Authprovider";
 import { useNavigate } from "react-router-dom";
 import { Typewriter } from 'react-simple-typewriter';
+import useTitle from "../Components/useTitle";
 
 
 const AddTouristSpot = () => {
+    useTitle('Add-tourist-spots')
     const [loading,setLoading]= useState(false)
     const navigate = useNavigate()
     const [country, setCountry] = useState(null);

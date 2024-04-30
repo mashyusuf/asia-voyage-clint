@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { FiCalendar, FiClock, FiMapPin, FiUsers } from "react-icons/fi";
 import { Link, useParams } from "react-router-dom";
+import useTitle from "../Components/useTitle";
 
 const Country_spots = () => {
+    useTitle('Country spots');
     const { country_name } = useParams();
     const [spots, setSpots] = useState([]);
 
     useEffect(() => {
+
         const fetchData = async () => {
             try {
                 const response = await fetch(`http://localhost:5000/countries-spots/${country_name}`);

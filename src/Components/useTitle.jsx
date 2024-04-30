@@ -4,7 +4,7 @@ import { useEffect } from "react";
 const useTitle = (title) => {
     return (
         useEffect(() =>{
-            document.title =`Elite Estate | ${title}`
+            document.title =`SouthAsianTourism | ${title}`
         },[])
     );
 };
