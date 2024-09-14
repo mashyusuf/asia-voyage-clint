@@ -12,7 +12,7 @@ const Country_spots = () => {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/countries-spots/${country_name}`);
+                const response = await fetch(`https://asia-voyage-server-kohl.vercel.app/countries-spots/${country_name}`);
                 const data = await response.json();
                 setSpots(data);
             } catch (error) {

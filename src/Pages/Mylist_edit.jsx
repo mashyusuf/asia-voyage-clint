@@ -16,7 +16,7 @@ const Mylist_edit = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/all-countries');
+            const response = await fetch('https://asia-voyage-server-kohl.vercel.app/all-countries');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -39,7 +39,7 @@ const Mylist_edit = () => {
         const alldata = { _id, tourists_spot_name, country_name, location, average_cost };
 
         console.log(alldata);
-        fetch(`http://localhost:5000/update-mylist/${_id}`, {
+        fetch(`https://asia-voyage-server-kohl.vercel.app/update-mylist/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

@@ -13,7 +13,7 @@ const Spots = () => {
   
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/addtourist'); // Replace with your actual backend endpoint
+        const response = await fetch('https://asia-voyage-server-kohl.vercel.app/addtourist'); // Replace with your actual backend endpoint
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -26,7 +26,7 @@ const Spots = () => {
    console.log(data)
    
     return (
-        <section className="grid grid-cols-3 gap-10">
+        <section className="grid md:grid-cols-2 lg:grid-col-3 gap-10">
                <div className="col-span-3 mb-6">
                 <h1 className="text-3xl font-bold text-center mb-4 text-blue-600">Discover Amazing Tourist Spots</h1>
                 <p className="text-lg text-gray-700 text-center">Explore the beauty of various tourist spots around the world.</p>

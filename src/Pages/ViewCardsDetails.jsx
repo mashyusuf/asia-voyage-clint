@@ -13,7 +13,7 @@ function ViewCardsDetails() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/all-tourist-spots/${id}`);
+                const response = await fetch(`https://asia-voyage-server-kohl.vercel.app/all-tourist-spots/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -29,7 +29,7 @@ function ViewCardsDetails() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/all-tourist-spots/${id}`);
+                const response = await fetch(`https://asia-voyage-server-kohl.vercel.app/all-tourist-spots/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -62,7 +62,7 @@ function ViewCardsDetails() {
                         <div className="p-6">
                             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4">{d.tourists_spot_name}</h2>
                             <div className="font-bold italic">
-                                <p className="flex items-center mb-2"> <FaCircle className="mr-2" />Cost: <span className="text-sm">{d.average_cost}</span> </p>
+                                <p className="flex items-center mb-2"> <FaCircle className="mr-2" />Cost: <span className="text-sm">{d.average_cost} $</span> </p>
                                 <p className="flex items-center mb-2"> <FaCircle className="mr-2" />Seasonality: <span className="text-sm">{d.seasonality}</span> </p>
                                 <p className="flex items-center mb-2"> <FaCircle className="mr-2" />Travel Time: <span className="text-sm">{d.travel_time}</span> </p>
                                 <p className="flex items-center mb-2"> <FaCircle className="mr-2" />Visitors: <span className="text-sm">{d.total_visitors_per_year}</span> </p>

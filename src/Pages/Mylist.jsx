@@ -5,16 +5,6 @@ import { Link, } from "react-router-dom";
 
 const Mylist = () => {
 
-   
-
-
-
-
-
-
-
-
-
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -30,7 +20,7 @@ const Mylist = () => {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:5000/my-tourist-spots/${user_email}`);
+            const response = await fetch(`https://asia-voyage-server-kohl.vercel.app/my-tourist-spots/${user_email}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -54,7 +44,7 @@ const Mylist = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/delete/${_id}`, {
+                fetch(`https://asia-voyage-server-kohl.vercel.app/delete/${_id}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json"

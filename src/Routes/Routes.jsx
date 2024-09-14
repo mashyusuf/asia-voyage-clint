@@ -6,7 +6,6 @@ import {
 import App from "../App";
 import Home from "../Home/Home";
 import Login from "../Pages/Login";
-import Contact from "../Pages/Contact";
 import AllTouristSpot from "../Pages/AllTouristSpot";
 import AddTouristSpot from "../Pages/AddTouristSpot";
 import Mylist from "../Pages/Mylist";
@@ -33,14 +32,11 @@ const router = createBrowserRouter([
         element: <Login></Login>
       },
 
-      {
-        path: "/contact",
-        element: <Contact></Contact>
-      },
+      
       {
         path: '/alltourist',
         element: <PrivateRoute><AllTouristSpot></AllTouristSpot></PrivateRoute>,
-        loader: () => fetch('http://localhost:5000/addtourist')
+        loader: () => fetch('https://asia-voyage-server-kohl.vercel.app/addtourist')
       },
       {
         path: "/addtourist",
@@ -67,13 +63,8 @@ const router = createBrowserRouter([
       {
         path: "/edit-mylist/:id",
         element: <Mylist_edit></Mylist_edit>,
-        loader: ({params}) => fetch(`http://localhost:5000/edit-mylist/${params.id}`)
+        loader: ({params}) => fetch(`https://asia-voyage-server-kohl.vercel.app/edit-mylist/${params.id}`)
       },
-      {
-        path: "*",
-        element: <PrivateRoute></PrivateRoute>
-      }
-
 
     ]
 

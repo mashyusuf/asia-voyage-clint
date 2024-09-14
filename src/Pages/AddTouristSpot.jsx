@@ -24,7 +24,7 @@ const AddTouristSpot = () => {
     const fetchData = async () => {
         setLoading(true)
         try {
-            const response = await fetch('http://localhost:5000/all-countries');
+            const response = await fetch('https://asia-voyage-server-kohl.vercel.app/all-countries');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -58,7 +58,7 @@ const AddTouristSpot = () => {
         const image = form.photo.value;
         const alldata = { tourists_spot_name, country_name, location, short_description, average_cost, seasonality, travel_time, total_visitors_per_year, user_name, user_email, image }
 
-        fetch('http://localhost:5000/addtourist', {
+        fetch('https://asia-voyage-server-kohl.vercel.app/addtourist', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
